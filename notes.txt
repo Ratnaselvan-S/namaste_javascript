@@ -1,0 +1,8 @@
+Everything in javascript happens in execution context (execution context is nothing but a box where every javascript runs)
+
+    ->Javascript is a synchronous and single threaded language (that means each line is executed one at atime in straight order)
+
+
+Execution context
+    
+    Memory (Variable Environment)                                     Code component(Thread of execution)
