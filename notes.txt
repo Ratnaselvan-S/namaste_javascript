@@ -1,24 +1,40 @@
-When javascript runs it create a global execution context it has two phase menory and code phase 
+var x=7
 
-in first time when the Memory stores the variable it allocate undefined as value for variable but for function it store the whole code of the function 
+function getName(){
+    console.log("Namste javascript)
+}
 
-in second phase the code execution happens again in here only all the execution and calculations are done 
-
-in second pahse when an funtion invoke is there it will create a brand new execution context 
-
-
-then same happens first pase allocate undefined to variable and then second phase calculate  and allocate to the variable (in function  execution context if there is return statement 
- then the control moves to the parent execution context)
-
- -> after execution of that particular thing is executed the context will be deleted 
+getName()
+console.log(x)
 
 
-~*~The engine ,how it manages this execution stack it can become n level execution stack inside of inside right ,here only the stack comes that is call stack 
+output: 
+Namste Javascript
+7
 
 
-Javascript Call stack other names
-    ->Execution context stack
-    ->Program stack 
-    ->control stack 
-    ->run time stack 
-    ->Machine stack 
+*Now*
+
+
+getName()
+console.log(x)
+
+
+var x=7
+
+function getName(){
+    console.log("Namste javascript)
+}
+
+output:
+Namaste Javascript
+Undefined
+
+
+->Hoisting 
+    before execution of code,the compiler first skims throughout the code and complete the phase 1 ,that is why function is defined and and variable is undefined
+
+    *very imp*
+        -> arrow function when the compiler skims it is just a variable so it will be undefined 
+
+    var getName=funtion(){}  this will be also have undefined when skiming 
