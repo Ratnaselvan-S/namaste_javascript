@@ -1,17 +1,10 @@
-var x=1
-a();
-b();
-console.log(x)
+even an empty javascript file when it runs a global state is added to call stack and execution context is still created 
 
-function a(){
-    var x=10
-    console.log(x)
-}
+in the global space on empty file javascript engine still creates window object 
 
-function b(){
-    var x=100;
-    console.log(x)
-}
+and suppose if we have this code 
 
-
-//Call stack 
+var x=10;
+console.log(window.x)
+console.log(this.x)
+console.log(x) //this will automatically search for that execution context space and if we define globally then the x will append to global object 
