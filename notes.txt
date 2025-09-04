@@ -1,3 +1,16 @@
-undefined what it means  ,when executing it skims throughout right at that time it is assigned undefined 
+lexical  means it is hierarchy or sequence 
 
-loosely type vs strictly typed here in javascript we can assign to an variable any type of datatype like string ,number etc but strictly typed we cannot assign a string variable as number 
+    -> when there is function b inside function a then function b is lexically inside function a and function a is lexically inside global scope
+    -> lexical  is created when execution context is created along with vaiiable and fucntion in memoru=y lexical  is also created 
+
+    Scope chain is nothing but when we have create in global b=10 and console log it inside like this 
+        function a(){
+            function c(){
+                console.log(b)
+            }
+        }
+        var b=10 
+    -> now each create a execution context right and inside c it will locally look for the variable "b" not not found so it lexically goes to parent memory and search for b 
+    but in parent also not there that is a execution context so it will go lexically to global one and ,if not there then it will return b is not defined 
+    
+        -> the process of lexically going to parent execution context memory is called scope chain 
