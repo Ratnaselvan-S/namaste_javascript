@@ -1,10 +1,3 @@
-even an empty javascript file when it runs a global state is added to call stack and execution context is still created 
+undefined what it means  ,when executing it skims throughout right at that time it is assigned undefined 
 
-in the global space on empty file javascript engine still creates window object 
-
-and suppose if we have this code 
-
-var x=10;
-console.log(window.x)
-console.log(this.x)
-console.log(x) //this will automatically search for that execution context space and if we define globally then the x will append to global object 
+loosely type vs strictly typed here in javascript we can assign to an variable any type of datatype like string ,number etc but strictly typed we cannot assign a string variable as number 
