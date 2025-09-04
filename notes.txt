@@ -1,8 +1,24 @@
-Everything in javascript happens in execution context (execution context is nothing but a box where every javascript runs)
+When javascript runs it create a global execution context it has two phase menory and code phase 
 
-    ->Javascript is a synchronous and single threaded language (that means each line is executed one at atime in straight order)
+in first time when the Memory stores the variable it allocate undefined as value for variable but for function it store the whole code of the function 
+
+in second phase the code execution happens again in here only all the execution and calculations are done 
+
+in second pahse when an funtion invoke is there it will create a brand new execution context 
 
 
-Execution context
-    
-    Memory (Variable Environment)                                     Code component(Thread of execution)
+then same happens first pase allocate undefined to variable and then second phase calculate  and allocate to the variable (in function  execution context if there is return statement 
+ then the control moves to the parent execution context)
+
+ -> after execution of that particular thing is executed the context will be deleted 
+
+
+~*~The engine ,how it manages this execution stack it can become n level execution stack inside of inside right ,here only the stack comes that is call stack 
+
+
+Javascript Call stack other names
+    ->Execution context stack
+    ->Program stack 
+    ->control stack 
+    ->run time stack 
+    ->Machine stack 
