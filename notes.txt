@@ -1,40 +1,17 @@
-var x=7
-
-function getName(){
-    console.log("Namste javascript)
-}
-
-getName()
+var x=1
+a();
+b();
 console.log(x)
 
-
-output: 
-Namste Javascript
-7
-
-
-*Now*
-
-
-getName()
-console.log(x)
-
-
-var x=7
-
-function getName(){
-    console.log("Namste javascript)
+function a(){
+    var x=10
+    console.log(x)
 }
 
-output:
-Namaste Javascript
-Undefined
+function b(){
+    var x=100;
+    console.log(x)
+}
 
 
-->Hoisting 
-    before execution of code,the compiler first skims throughout the code and complete the phase 1 ,that is why function is defined and and variable is undefined
-
-    *very imp*
-        -> arrow function when the compiler skims it is just a variable so it will be undefined 
-
-    var getName=funtion(){}  this will be also have undefined when skiming 
+//Call stack 
