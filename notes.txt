@@ -6,7 +6,7 @@ example
     let a=5; 
     var b=10
 
--> when the javascript skims the b is allocated undefiined and in global scope of memery but a is on script scope and it is also assigned undefined 
+-> when the javascript skims the b is allocated undefiined and in global scope of memery but "a" is on script scope and it is also assigned undefined 
 -> when the let a is undefined until initialzation that is the time period between this is known as temporal dead zone
 -> so whenever we are in temporal deadzone there will be "reference error "
 
