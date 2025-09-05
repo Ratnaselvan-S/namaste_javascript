@@ -1,16 +1,86 @@
-so in let when we have let a=10 ,it does not behave like var the let variable is assigned not in global scope but a script object in meory while skiming and 
-like var it does not console undefined ,it says character a is not initialized 
+{
+    var a=10 
+    let b=20
+    const c=30
 
-example
     console.log(a)
-    let a=5; 
-    var b=10
+    console.log(b)
+    console.log(c)
+}
 
--> when the javascript skims the b is allocated undefiined and in global scope of memery but "a" is on script scope and it is also assigned undefined 
--> when the let a is undefined until initialzation that is the time period between this is known as temporal dead zone
--> so whenever we are in temporal deadzone there will be "reference error "
+console.log(a)
+console.log(b)
+console.log(c)
 
 
-const  type when we reinitalize it then "type error" will come 
+result:
+10
+20
+30
+10
+b is not defined 
 
-syntax error is when we do not follow ecmascriptStandard then the systax error comes 
+
+
+-> the reason is when we define let and const in a block then when compileing the var will be in global scope and let and const will be in block scope so only when we are in the block 
+    we can access let and const and when we move outside the block scope will be removed and let and const will be become undefiined
+
+
+var a=100
+{
+    var a=10 
+    let b=20
+    const c=30
+
+    console.log(a)
+    console.log(b)
+    console.log(c)
+}
+
+console.log(a)
+
+result:
+10
+20
+30
+10
+
+->The reason is "var" is global even theough wherever we define so  if modifies the global variable thus the console is still "10"
+
+let b=100
+{
+    var a=10 
+    let b=20
+    const c=30
+
+    console.log(a)
+    console.log(b)
+    console.log(c)
+}
+
+console.log(b)
+
+result:
+10
+20
+30
+100
+
+-> the reason is const and let have script scope when we define it globally but when we define it in block then they will be in block scope so when a block is executing 
+    the variable will look in block scope and when outside the block it will look at script scope 
+
+
+Shadowing 
+
+let name = "Ratna"; // outer scope
+
+function greet() {
+  let name = "Copilot"; // shadows outer 'name'
+  console.log("Hello, " + name); // prints "Hello, Copilot"
+}
+
+greet();
+console.log("Outside: " + name); // prints "Outside: Ratna"
+
+
+when we redine same variable name as outside global one is known as shadowing
