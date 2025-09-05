@@ -1,16 +1,16 @@
-lexical  means it is hierarchy or sequence 
+so in let when we have let a=10 ,it does not behave like var the let variable is assigned not in global scope but a script object in meory while skiming and 
+like var it does not console undefined ,it says character a is not initialized 
 
-    -> when there is function b inside function a then function b is lexically inside function a and function a is lexically inside global scope
-    -> lexical  is created when execution context is created along with vaiiable and fucntion in memoru=y lexical  is also created 
+example
+    console.log(a)
+    let a=5; 
+    var b=10
 
-    Scope chain is nothing but when we have create in global b=10 and console log it inside like this 
-        function a(){
-            function c(){
-                console.log(b)
-            }
-        }
-        var b=10 
-    -> now each create a execution context right and inside c it will locally look for the variable "b" not not found so it lexically goes to parent memory and search for b 
-    but in parent also not there that is a execution context so it will go lexically to global one and ,if not there then it will return b is not defined 
-    
-        -> the process of lexically going to parent execution context memory is called scope chain 
+-> when the javascript skims the b is allocated undefiined and in global scope of memery but a is on script scope and it is also assigned undefined 
+-> when the let a is undefined until initialzation that is the time period between this is known as temporal dead zone
+-> so whenever we are in temporal deadzone there will be "reference error "
+
+
+const  type when we reinitalize it then "type error" will come 
+
+syntax error is when we do not follow ecmascriptStandard then the systax error comes 
