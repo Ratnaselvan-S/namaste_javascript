@@ -38,3 +38,5 @@ Undefined
         -> arrow function when the compiler skims it is just a variable so it will be undefined 
 
     var getName=funtion(){}  this will be also have undefined when skiming 
+
+    -> hoisting means when the compiler put var,function let and const in the memory before execution is known as hoisting
