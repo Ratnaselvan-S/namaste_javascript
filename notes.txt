@@ -71,6 +71,7 @@ result:
 
 
 Shadowing 
+-----------
 
 let name = "Ratna"; // outer scope
 
@@ -82,5 +83,5 @@ function greet() {
 greet();
 console.log("Outside: " + name); // prints "Outside: Ratna"
 
-
-when we redine same variable name as outside global one is known as shadowing
+def:
+    If we have same named variable outside the block, then block variable will shadowed outside block variable.
