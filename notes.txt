@@ -1,37 +1,63 @@
-closure 
-    ->A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment).
-     In other words, a closure gives a function access to its outer scope. In JavaScript, closures are created every time a function is created, at function creation time.
-
-
-
-so here is an question 
+closure Interview questions
 
 function x(){
-    var a="Hello there"
+    var i=10 
+    setTimeOut(function (){
+        console.log(i)
+    })
 
-    return funtion y(){
-        console.log(a)
+    console.log("NAmaste javascript")
+}
+
+result:
+NAmaste javascript
+10
+
+function x(){
+    for(var i=0;i<=5;i++){
+        setTimeOut(function (){
+            console.log(i)
+        },500)
     }
 }
 
-var z= x()
-z()
+result:
+6
+6
+6
+6
+6
+
+->this is because the when ever setTimeOut is there the function and timer will be placed somewhere and it keeps on iterating so when the time finish then the function is bring back 
+    to call stack ,since the i is refering to the old iterating it woyld have moved to 6 that is why 6 is printed everytime 
+
+-> to solve we can scope the var "i" to let "i" but if we need to use only var then we have to create a separate copy of x
 
 
-Result:
-"Hello there"
+function x(){
+    for(var i=0;i<=5;i++){
+        function y(c){
 
--> so how it came ,when we return the function a closeure is returned inside it a function along with lexical scope will bbe there 
+            setTimeout(function(){
+                console.log(c)
+             },c *1000)
+        }
+        y(i)
+    }
+    
+}
 
-closure is function along with its lexical scope (reference to the variable not value )is known as closure 
+x()
 
 
-use of closures:
-    -module Design pattern 
-    - currying 
-    - function like once
-    - memoize
-    - maintaining state in async world 
-    -setTimeouts 
-    -Iterators
-    -and many more
+result:
+0
+1
+2
+3
+4
+5
+
+
+-> here we took the copy of i so that the closure doesnt represent the same i reference
+
