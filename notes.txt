@@ -1,42 +1,62 @@
-closure is a function along with its outer enviromne tis known as closure (in other words a function along with its lexical scope is known as closure )
-
-
-function outer(){
-    let a=10
-    function inner(){
-        console.log(a)
-    }
-    return inner
+Function statement aka function declaration (same thing)
+---------------------------------------------------------
+function a(){
+    console.log("Hello)
 }
 
-outer()();
 
-
-
-
-function outer(b){
-    let a=10
-    function inner(){
-        console.log(a,b)
-    }
-    return inner
+Function Expression
+---------------------
+var b=function (){
+    console.log("World")
 }
 
-outer("Hello world")();
 
-this inner will also have accesss to the "b" variable
+diffenrence between these two is hoisting ,if we declare on above the first function execute but the second function through error, says it is not function  because
+it will be undefined 
 
 
+a()
+b()
+function a(){
+    console.log("Hello)
+}
+var b=function (){
+    console.log("World")
+}
 
-closure 
-    advantages:
-        module pattern 
-        function curring
-        higher order function       
-        data encapsulation (see the image)
+Result:
+    Hello
+    b is not a function
 
-    disadvantages:
-        ->over consumption of memory (not garbage collected)
-        
 
-->modern v8 engine is smartly garbage collected
+Anonymous Function
+------------------
+function(){
+
+}
+
+->it is something which return a value
+
+
+Named Function Expression
+--------------------------
+
+var b=function xyz(){
+    console.log(xyz)
+}
+
+-> we cannot call xyz() from outside 
+
+
+diffenrence between parameters and Arguments
+-----------------------------------------------
+function x() -> this is paramenter 
+
+x(1) -> this is arguments where we call the function
+
+First class function
+----------------------
+
+-> the ability of function to be used as a paramater and argument and also can return a function is known as first class function 
+->So when a language supports all three (store in variable, pass as argument, return as value) → it has first-class functions.
