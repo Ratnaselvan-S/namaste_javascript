@@ -1,63 +1,42 @@
-closure Interview questions
+closure is a function along with its outer enviromne tis known as closure (in other words a function along with its lexical scope is known as closure )
 
-function x(){
-    var i=10 
-    setTimeOut(function (){
-        console.log(i)
-    })
 
-    console.log("NAmaste javascript")
-}
-
-result:
-NAmaste javascript
-10
-
-function x(){
-    for(var i=0;i<=5;i++){
-        setTimeOut(function (){
-            console.log(i)
-        },500)
+function outer(){
+    let a=10
+    function inner(){
+        console.log(a)
     }
+    return inner
 }
 
-result:
-6
-6
-6
-6
-6
-
-->this is because the when ever setTimeOut is there the function and timer will be placed somewhere and it keeps on iterating so when the time finish then the function is bring back 
-    to call stack ,since the i is refering to the old iterating it woyld have moved to 6 that is why 6 is printed everytime 
-
--> to solve we can scope the var "i" to let "i" but if we need to use only var then we have to create a separate copy of x
+outer()();
 
 
-function x(){
-    for(var i=0;i<=5;i++){
-        function y(c){
 
-            setTimeout(function(){
-                console.log(c)
-             },c *1000)
-        }
-        y(i)
+
+function outer(b){
+    let a=10
+    function inner(){
+        console.log(a,b)
     }
-    
+    return inner
 }
 
-x()
+outer("Hello world")();
+
+this inner will also have accesss to the "b" variable
 
 
-result:
-0
-1
-2
-3
-4
-5
 
+closure 
+    advantages:
+        module pattern 
+        function curring
+        higher order function       
+        data encapsulation (see the image)
 
--> here we took the copy of i so that the closure doesnt represent the same i reference
+    disadvantages:
+        ->over consumption of memory (not garbage collected)
+        
 
+->modern v8 engine is smartly garbage collected
