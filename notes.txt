@@ -1,62 +1,48 @@
-Function statement aka function declaration (same thing)
----------------------------------------------------------
-function a(){
-    console.log("Hello)
+what is callback function in javascript?
+    setTimeout(function(){
+        console.log("timer");
+    },5000)
+
+    function x(y){
+        console.log("Hello")
+        y()
+    }
+
+    x(function(){
+        console.log("world")
+    })
+
+    -> callback function is nothing but passing a function as an argument ,by doing this we can acheive asynchrounous (example setTimeout)
+
+what is blocking the main thread ?
+    we know javascript ,whever run it will call a execution context which will be in call stack so if something block the call stack then it is called blocking the main thread 
+    -> we known javascript is a synchrounous and single thread language 
+    
+
+deep on event listener:
+----------------------------
+<button id="clickme">Click me</button>
+
+document.getElementById("clickme").addEventListener("click",function(){
+    console.log("Hello")
+})
+
+-> so here a scenario thet i need to keep track on click me ,how much time it is clicked but with data encapsulation
+
+
+function addEvent(){
+    let count=0
+    document.getElementById("clickme").addEventListener("click",function(){
+        console.log("Hello",++count)
+    })
+
 }
 
 
-Function Expression
----------------------
-var b=function (){
-    console.log("World")
-}
+addEvent()
 
-
-diffenrence between these two is hoisting ,if we declare on above the first function execute but the second function through error, says it is not function  because
-it will be undefined 
-
-
-a()
-b()
-function a(){
-    console.log("Hello)
-}
-var b=function (){
-    console.log("World")
-}
-
-Result:
-    Hello
-    b is not a function
-
-
-Anonymous Function
-------------------
-function(){
-
-}
-
-->it is something which return a value
-
-
-Named Function Expression
---------------------------
-
-var b=function xyz(){
-    console.log(xyz)
-}
-
--> we cannot call xyz() from outside 
-
-
-diffenrence between parameters and Arguments
------------------------------------------------
-function x() -> this is paramenter 
-
-x(1) -> this is arguments where we call the function
-
-First class function
-----------------------
-
--> the ability of function to be used as a paramater and argument and also can return a function is known as first class function 
-->So when a language supports all three (store in variable, pass as argument, return as value) → it has first-class functions.
+Garbage collection & remove event listener
+---------------------------------------------
+-> here we remove the event listener because we know if the js executed all the eventlistener will have formed a callback function and formed closures
+    so these closures will always be available it wont be garbage collected because the vaiable is refercing the function(click,scroll) etc,we never
+    know when click will happen that is why all the event listener will be in memory that is why we remove it 
