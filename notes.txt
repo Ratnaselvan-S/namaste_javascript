@@ -4,7 +4,7 @@ function x(){
     var i=10 
     setTimeOut(function (){
         console.log(i)
-    })
+    },1000)
 
     console.log("NAmaste javascript")
 }
@@ -31,7 +31,7 @@ result:
 ->this is because the when ever setTimeOut is there the function and timer will be placed somewhere and it keeps on iterating so when the time finish then the function is bring back 
     to call stack ,since the i is refering to the old iterating it woyld have moved to 6 that is why 6 is printed everytime 
 
--> to solve we can scope the var "i" to let "i" but if we need to use only var then we have to create a separate copy of x
+-> to solve we can scope the var "i" to let "i" but if we need to use only var then we have to create a separate copy of i
 
 
 function x(){
