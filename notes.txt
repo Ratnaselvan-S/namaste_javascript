@@ -70,18 +70,33 @@ result:
     the variable will look in block scope and when outside the block it will look at script scope 
 
 
-Shadowing 
------------
 
-let name = "Ratna"; // outer scope
+
+So where does shadowing come in?
+
+Shadowing is not a separate mechanism — it’s just a name for the situation where a local declaration prevents access to an outer variable with the same name.
+
+👉 Example:
+
+let name = "Ratna";  // global
 
 function greet() {
-  let name = "Copilot"; // shadows outer 'name'
-  console.log("Hello, " + name); // prints "Hello, Copilot"
+  let name = "Copilot"; // new variable in local EC
+  console.log(name);    // local 'name' is found first → hides outer one
 }
-
 greet();
-console.log("Outside: " + name); // prints "Outside: Ratna"
 
-def:
-    If we have same named variable outside the block, then block variable will shadowed outside block variable.
+
+When the engine resolves name inside greet():
+
+Step 1: Looks in greet()’s local environment → finds "Copilot". ✅ Done.
+
+Step 2: It never even goes to outer scope because it already found a variable with that identifier.
+
+Result → the outer name is invisible inside this scope = shadowed.
+
+
+
+
+
+imp:"if and loop are some example of block scope ,function are not block scope,while running function it will create a local scope and put there"
