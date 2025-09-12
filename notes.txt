@@ -16,6 +16,9 @@ The browser (Chrome, Firefox, etc.) is built with different subsystems inside th
 
    ~ Other APIs → Geolocation, IndexedDB, etc.
 
+
+setTimeout
+-----------------
 console.log("start")
 
 settimeout(function cb(){
@@ -30,6 +33,10 @@ settimeout(function cb(){
 
 console.log("start")
 
+
+dom web api
+--------------
+
 document.getElementByid("button").addEventListener("click",function cb(){
     console.log("execute");
 })
@@ -38,8 +45,8 @@ document.getElementByid("button").addEventListener("click",function cb(){
     when the event occures then from dom event subsytem it moves to callback queue and then by event loop if call stack is empty it execute the cb function
 
 
-call back queue
-----------------
+call back queue also known as task queue
+------------------------------------------
 
 why we need call back queue ?
     ->if no ccall back queue and we take it directly form subsystem then below scenario
@@ -47,3 +54,31 @@ why we need call back queue ?
     thus call back queue is there so everything gets its chance
 
     -> The Callback Queue ensures fair scheduling so that all subsystems’ callbacks (click, timeout, network, etc.) eventually get executed.
+
+-> here all the domweb api,settimeout api,etc all comes under call back queue
+
+Fetch api 
+-----------
+
+settimeout(function cb(){
+    console.log("timer")
+},5000)
+
+fetch("httsp://google.com").then(function cf(){
+    console.log("fetch Executed")
+})
+
+
+-> when the settimeout comes the timeout web api is called and then time sussytem the call back function is stored and move on to fetch here fetch api is called and call back function 
+    move to network web api and once the data is received it is placed into microtask queue (this is same as call stack but it has higher priority ) so when the event loop check 
+    empty call stack ,then it first check microtask queue any function is there and then next to call stack queue
+
+Microtask Queue
+----------------
+-> all promises and mutation observer comes under micro tast queue
+
+
+starvation
+-----------
+    -> when the micro tast queue when execute one call back function and it create another cb function in micro task queue and this keeps on going ,then starvation occurs in 
+        call back queue
