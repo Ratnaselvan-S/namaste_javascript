@@ -1,48 +1,49 @@
-what is callback function in javascript?
-    setTimeout(function(){
-        console.log("timer");
-    },5000)
+->Call stack is inside the javascript Engine
 
-    function x(y){
-        console.log("Hello")
-        y()
-    }
+->see the image "browser_superPowers.png" ,there are different thing that is avaliable ,if javascript need to access them then comes the web apis
 
-    x(function(){
-        console.log("world")
-    })
+-> the web api is not written in javascript ex-(document.getElementById,console,fetch,settimeout) these are not written in javascript
 
-    -> callback function is nothing but passing a function as an argument ,by doing this we can acheive asynchrounous (example setTimeout)
 
-what is blocking the main thread ?
-    we know javascript ,whever run it will call a execution context which will be in call stack so if something block the call stack then it is called blocking the main thread 
-    -> we known javascript is a synchrounous and single thread language 
-    
+The browser (Chrome, Firefox, etc.) is built with different subsystems inside the Web API layer:
+--------------------------------------------------------------------------------------------------
 
-deep on event listener:
-----------------------------
-<button id="clickme">Click me</button>
+   ~ Timer subsystem → handles setTimeout, setInterval.
 
-document.getElementById("clickme").addEventListener("click",function(){
-    console.log("Hello")
+   ~ Networking subsystem → handles fetch, XHR, WebSocket.
+
+   ~ DOM event subsystem → handles addEventListener registrations for click, keydown, etc.
+
+   ~ Other APIs → Geolocation, IndexedDB, etc.
+
+console.log("start")
+
+settimeout(function cb(){
+    console.log("timer")
+},5000)
+
+
+-> this is basic example of how it executes first console will call the console web api and print start and then the settimeout call the settimeout api and then the call back function is 
+    stored in Web API (Timer subsystem) and after timer completed the call back function is pushed to callback queue and event loop will then take the function and put it in 
+    call stack 
+
+
+console.log("start")
+
+document.getElementByid("button").addEventListener("click",function cb(){
+    console.log("execute");
 })
 
--> so here a scenario thet i need to keep track on click me ,how much time it is clicked but with data encapsulation
+->same step ,here the global execution context is created and then console is executed and then document web api will store the event in dom event subsystem and then register will click event 
+    when the event occures then from dom event subsytem it moves to callback queue and then by event loop if call stack is empty it execute the cb function
 
 
-function addEvent(){
-    let count=0
-    document.getElementById("clickme").addEventListener("click",function(){
-        console.log("Hello",++count)
-    })
+call back queue
+----------------
 
-}
+why we need call back queue ?
+    ->if no ccall back queue and we take it directly form subsystem then below scenario
+    supporse if a click event and set timeout event is both there and if i click the click event continuosly then the click event execute next after next the timer event wont have its chance 
+    thus call back queue is there so everything gets its chance
 
-
-addEvent()
-
-Garbage collection & remove event listener
----------------------------------------------
--> here we remove the event listener because we know if the js executed all the eventlistener will have formed a callback function and formed closures
-    so these closures will always be available it wont be garbage collected because the vaiable is refercing the function(click,scroll) etc,we never
-    know when click will happen that is why all the event listener will be in memory that is why we remove it 
+    -> The Callback Queue ensures fair scheduling so that all subsystems’ callbacks (click, timeout, network, etc.) eventually get executed.
