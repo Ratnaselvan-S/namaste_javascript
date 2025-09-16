@@ -2,3 +2,49 @@
  -------------------------------
     ->so if we need to run javascript on robot,watercooler,bulb etx we need javascript runtime Environment
     -> js Runtime Environment has js engine along with some apis like console,settimeout etc
+
+
+
+->javascript has lot of its engine like google ,firefox etc
+
+->spidermonkey is the first javascript engine (Mozilla firefox)
+
+->javascript engine  is just a sotware engine that is just a piece of code written in c++
+
+      code 
+       |
+    parsing
+       |
+   Compilation
+       |
+   Execution
+
+   this is how js engine converts our javascript code to machine readable language or low level language
+
+parsing
+--------
+   ->Tokens ex(let a=10) here let is 0ne token ,a ,equals and 10 all are converted into one token
+
+
+Syntax Parser
+--------------
+   ->Ast(Abstract syntax tree) convert the normal code to some tree structure and refer the image and also (https://astexplorer.net/)
+
+Compilation
+-----------
+   -> js is it conpilation or intepreted language ?
+         ->javascript when the guy invented it is an intepreted language but now most of the engine combines both compilation and intepreted  and gave jit compilation
+
+   -> now when the ast is passed to compilation the interpreter execute the code line by line and takes the compiler and optimize the code  as much as it can  and then produces 
+      byte code and pass it to Execution
+
+Execution 
+----------
+   ->has two (Memory heap and call stack )
+   -> The Memory Heap is where JavaScript stores objects, functions, arrays, and reference-type values.
+            - Primitives (number, string, boolean, null, undefined, symbol, bigint) are usually stored in the stack (with their value directly stored).
+            - When you assign an object or function, the reference (pointer) is kept on the stack, while the actual data lives in the heap.
+   -> Garbage collection is there in Memory Heap and whenever we have some variable or function or cleared some event listener the Garbage collection use 
+      (Mark & sweep Algorithm) to remove the code from Memory
+   -> Home Work - mark and sweep,inlining,copy elision and inline caching
+   -> v8 engine intrepretion name is ignition and compiler name is turbo fan and garbage collection name is "orinoco " and also "oilpan" for different purpose
