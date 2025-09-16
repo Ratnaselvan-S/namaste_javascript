@@ -1,47 +1,17 @@
-Higher Order function
------------------------
-   -> A function which takes another function as arguments or return a function is known as higher order function
+reduce
+------
+   when we  need to do something on the array and then we need to return one value
 
-Example:
----------
-function x(){
-   console.log("x printed")
-}
+   ->function takes two parameters acc,curr 
+      curr -> is the current array value
+      acc-> this is like sum where all the calculated value store
 
-function y(x){
-   x()
-}
+   const output=arr.reduce(function(acc,curr){
+      acc=acc+curr;
+      return acc
+   },0)
 
-y(x)
-
--> reusability ,modularity 
-
--> check the image ,we get to know how we can prevent reuse of code and how we can refactor
+   console.log(output)
 
 
-Prototype
-----------
-   -> it is just an object when we create array or object then the proto object is getting attached to the array or object which we define ,the javascript itself
-       will add it
-   
-
-
-
-Prototype Inheritance
-----------------------
-   -> refer the prototype image
-   -> this is a sort of scope chain 
-
-
-example :
-   Function.prototype.myBind=function (){
-      console.log("start")
-   }
-
-   function b(){
-
-   }
-   b.mybind()
-
-
-this function b will have access to my bind function because we have defined it  in the prototype scope 
+   in the acc value we can also give empty object or array as initial value 
