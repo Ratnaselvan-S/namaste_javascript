@@ -1,29 +1,47 @@
-The settimeout has trust  issues ,because even if we mention the call back function to ruun after 5 sec until the call stack is empty the settimeout function wont run
+Higher Order function
+-----------------------
+   -> A function which takes another function as arguments or return a function is known as higher order function
 
-
--> example : blocking the main thread and setting the settimeout
-
-console.log("start")
-
-
-setTimeOut(function(){
-   console.log("console printed")
-},5000)
-
-
-let startDate=new Date().getTime()
-let endDate=startDate
-
-while(endDate <startDate+1000){
-   endDate=new Date().getTime()
+Example:
+---------
+function x(){
+   console.log("x printed")
 }
 
-console.log("end")
+function y(x){
+   x()
+}
 
-result:
-   start
-   end
-   console printed
+y(x)
+
+-> reusability ,modularity 
+
+-> check the image ,we get to know how we can prevent reuse of code and how we can refactor
 
 
--> here i have blocked the main thread for 10 seconds to check the behaviour of settimeout
+Prototype
+----------
+   -> it is just an object when we create array or object then the proto object is getting attached to the array or object which we define ,the javascript itself
+       will add it
+   
+
+
+
+Prototype Inheritance
+----------------------
+   -> refer the prototype image
+   -> this is a sort of scope chain 
+
+
+example :
+   Function.prototype.myBind=function (){
+      console.log("start")
+   }
+
+   function b(){
+
+   }
+   b.mybind()
+
+
+this function b will have access to my bind function because we have defined it  in the prototype scope 
