@@ -41,7 +41,7 @@ document.getElementByid("button").addEventListener("click",function cb(){
     console.log("execute");
 })
 
-->same step ,here the global execution context is created and then console is executed and then document web api will store the event in dom event subsystem and then register will click event 
+->same step ,here the global execution context is created and then console is executed and then document web api will store the event in dom event subsystem and then register with click event 
     when the event occures then from dom event subsytem it moves to callback queue and then by event loop if call stack is empty it execute the cb function
 
 
