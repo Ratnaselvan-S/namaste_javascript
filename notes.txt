@@ -46,3 +46,10 @@ Garbage collection & remove event listener
 -> here we remove the event listener because we know if the js executed all the eventlistener will have formed a callback function and formed closures
     so these closures will always be available it wont be garbage collected because the vaiable is refercing the function(click,scroll) etc,we never
     know when click will happen that is why all the event listener will be in memory that is why we remove it 
+
+
+
+
+ Normal HTML navigation → event listeners are cleaned up automatically.
+
+ SPA-style navigation → you must manage/removes listeners yourself to prevent memory leaks.
