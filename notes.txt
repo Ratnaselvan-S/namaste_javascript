@@ -48,3 +48,40 @@ Execution
       (Mark & sweep Algorithm) to remove the code from Memory
    -> Home Work - mark and sweep,inlining,copy elision and inline caching
    -> v8 engine intrepretion name is ignition and compiler name is turbo fan and garbage collection name is "orinoco " and also "oilpan" for different purpose
+
+
+
+Mark and sweep algorithm 
+--------------------------
+    -> first all garbage collection need to do two things 
+        - it should be able to detect the object which are not referenced 
+        - it should make the space available for the program to allocate it again
+    -> here mark phase (When an object is created a graph is formed and with depth first search it is traveresed to all node and all the reachable object refeerence is marked true and 
+    the non reachable are marked false and then sweep will come and remove all the false marked one)
+
+
+Inlining (Function Inlining)
+------------------------------
+    Definition: Replacing a function call with the actual body of the function.
+
+    Why: Removes function call overhead, makes execution faster.
+
+    Remember: Call replaced with code.
+
+Copy Elision
+-------------
+
+    Definition: Compiler optimization that avoids making unnecessary temporary copies of objects.
+
+    Why: Improves performance by constructing directly in the target variable.
+
+    Remember: No extra copy → object built directly.
+
+Inline caching
+--------------
+
+    Definition: Runtime optimization (in JS engines) that caches the location of properties/methods after first lookup.
+
+    Why: Makes repeated property access faster in dynamic languages.
+
+    Remember: Cache property access for speed.
