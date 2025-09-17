@@ -1,17 +1,2 @@
-reduce
-------
-   when we  need to do something on the array and then we need to return one value
-
-   ->function takes two parameters acc,curr 
-      curr -> is the current array value
-      acc-> this is like sum where all the calculated value store
-
-   const output=arr.reduce(function(acc,curr){
-      acc=acc+curr;
-      return acc
-   },0)
-
-   console.log(output)
-
-
-   in the acc value we can also give empty object or array as initial value 
+CallBack Hell 
+   -> call back hell is nothing but a function has n level nested call back to execute 
