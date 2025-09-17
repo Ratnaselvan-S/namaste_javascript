@@ -1,2 +1,8 @@
 CallBack Hell 
    -> call back hell is nothing but a function has n level nested call back to execute 
+
+Inversion of control
+---------------------
+    ->here in call back function ,without promises we give  each function that depends on its parent call back to the parent so when we starts to execute first order cart is created 
+        then payment  function is called but here is the twist the payment function may have error or may have called twice etc so we have no way to know it ,we lose 
+        control of it 
