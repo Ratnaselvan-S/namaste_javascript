@@ -1,8 +1,31 @@
-CallBack Hell 
-   -> call back hell is nothing but a function has n level nested call back to execute 
+promises
+---------
+ex:
+    const cart=["hello","there"];
+    const promises=createOrder(card);
+    promise.then(function(orderID){
+        proceedTopayment(orderID)
+    })
+       
 
-Inversion of control
----------------------
-    ->here in call back function ,without promises we give  each function that depends on its parent call back to the parent so when we starts to execute first order cart is created 
-        then payment  function is called but here is the twist the payment function may have error or may have called twice etc so we have no way to know it ,we lose 
-        control of it 
+    ->this line (no 5) first when it execute the create order return a promise like an empty object with data "undefined" -{data:undefined} and after 5 or 6 seconds after 
+        api call is made and data is returned then it will fill the object with data by removing undefined {data:data}
+earlier how promise where written
+    
+
+real world promise code:
+    const github_api="some api"
+
+    const user=fetch(github_api)
+    -> now this  line will execute and  a promise is returned ,the above i said promise will return an object with undefined right ,here it is shown in promiseResult (for 
+        clarity see the iimage)
+
+    -> the pending state as you see in the image has only three stage pending ,fullfilled and rejected
+    -> the promise data object is immutable
+
+
+promises def:
+    it is an object which represent the eventual completion of asynchronous operation
+
+promise chaining:
+    -> this is used to remove the pyramid of doom which happens in call back hell and attach .then on each transition (refer the image )
