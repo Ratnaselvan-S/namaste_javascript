@@ -1,31 +1,36 @@
-promises
----------
-ex:
-    const cart=["hello","there"];
-    const promises=createOrder(card);
-    promise.then(function(orderID){
-        proceedTopayment(orderID)
+Create a promise
+------------------
+
+ const promise=createCart(cart)
+
+ const cart=["shows","Hello"]
+
+ function createCart(cart){
+    const pr=new PRomises(function(resolve,reject){
+
+        if(!validateCart(cart)){
+            reject(cart)
+        }
+
+        const orderid="12355", //here only the db call is made and may be create an order and return the order id 
+        if(orderid){
+            resolve(orderid)
+        }
+
     })
-       
 
-    ->this line (no 5) first when it execute the create order return a promise like an empty object with data "undefined" -{data:undefined} and after 5 or 6 seconds after 
-        api call is made and data is returned then it will fill the object with data by removing undefined {data:data}
-earlier how promise where written
-    
+    return pr
+ }
+-> here we are not catching the error type so in browser console there will be red mark and indication of error so we write catch block and do something with the error
 
-real world promise code:
-    const github_api="some api"
-
-    const user=fetch(github_api)
-    -> now this  line will execute and  a promise is returned ,the above i said promise will return an object with undefined right ,here it is shown in promiseResult (for 
-        clarity see the iimage)
-
-    -> the pending state as you see in the image has only three stage pending ,fullfilled and rejected
-    -> the promise data object is immutable
+-> if in promise chaining we need to chain the promise like .then.then and we return inside the function so the promise chain is succesful (remenber to put the return keyword if
+the next then block is corresponding to the previous one)
 
 
-promises def:
-    it is an object which represent the eventual completion of asynchronous operation
+-> also the catch block is there right it will catch all the error if it occur on any level of then block
 
-promise chaining:
-    -> this is used to remove the pyramid of doom which happens in call back hell and attach .then on each transition (refer the image )
+-> so consider a senario if one catch block is last then even if one fail then it will go directly to catch block and we do not know which then block goes error
+    so for each "then" we can write "catch" block 
+
+
+    (refer the image for better understanding)
