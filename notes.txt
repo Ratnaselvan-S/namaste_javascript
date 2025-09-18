@@ -140,3 +140,23 @@ result:
 
 
 -> in this case both resolved at the same time the first promise has 10 seconds where as second only has 5 but both will resolve at the same time 
+
+
+so when we  encounter async and await the call stack wont stop and wait for the timer to resolve rather it will suspend the function and after the promise is resolved it 
+will start execute from where it left 
+
+
+How Fetch works?
+----------------
+
+->Fetch actually returns a promise ,it return a body object with readable stream and we convert it into .json format this is also a promise when resolved then we get json
+    formatted data
+
+-> so here until fetch it is run directly at call stack first once the await fetch came then the code move to network subsystem and wait there until the fetch got the data 
+    then after it moves to microtask queue and event loop will place the rest of the function in call stack 
+
+
+Async vs promise
+-----------------
+async and await is just syntactical sugar that is it because it uses promise.then and catch only 
+-> async avoid promise chaining ,we do not want to write .then.then like that 
