@@ -1,36 +1,142 @@
-Create a promise
-------------------
-
- const promise=createCart(cart)
-
- const cart=["shows","Hello"]
-
- function createCart(cart){
-    const pr=new PRomises(function(resolve,reject){
-
-        if(!validateCart(cart)){
-            reject(cart)
+what is async?
+    -> Async function always return a promise
+    -> so example 
+       async function hello(){
+            return "Namaste"
         }
+    -> in Async function always return a promise so even if we do not return Promise and return value like above the async will wrap the value and return a promise 
 
-        const orderid="12355", //here only the db call is made and may be create an order and return the order id 
-        if(orderid){
-            resolve(orderid)
-        }
+    -> aync and await are used to handle promises 
 
-    })
+example:
 
-    return pr
- }
--> here we are not catching the error type so in browser console there will be red mark and indication of error so we write catch block and do something with the error
+const p=new Promise(function(reslve,reject){
+    resolve("Promises get resilved")
 
--> if in promise chaining we need to chain the promise like .then.then and we return inside the function so the promise chain is succesful (remenber to put the return keyword if
-the next then block is corresponding to the previous one)
+})
 
 
--> also the catch block is there right it will catch all the error if it occur on any level of then block
+async funtion hello(){
+    const res=await p
+}
 
--> so consider a senario if one catch block is last then even if one fail then it will go directly to catch block and we do not know which then block goes error
-    so for each "then" we can write "catch" block 
+
+-> here the await keyword is used only in async function and await is there to resolve the promises
+
+Async & await 
+--------------
+    -> here the async function when called the await keyword block the code until promise is resolved and then only the next line will execute but in promises no one will wait
+        it will just go and put the call aside and print next line (This is the key difference)
+
+    -> here in interview question image there is two await so will it wait for 20 second or 10 seconds ?? the answer is both the await will be solved parellely at the same time
+
+    -> in interview question 2 image the first await promise is resolved fastly and second await takes some more time (i know this is not clear i will write the example down)
 
 
-    (refer the image for better understanding)
+
+Example:1
+
+const p=new Promise(function(reslve,reject){
+    setTimeOut(function (){
+    resolve("Promises get resilved")
+    },5000)
+    
+
+})
+
+
+async funtion hello(){
+    const res=await p
+    console.log("Namaste Javascript")
+    console.log(res)
+
+    const res2=await p
+    console.log("Namaste Javascript 2")
+    console.log(res2)
+
+}
+
+result:
+    Namaste Javascript
+    Promises get resilved
+    Namaste Javascript 2
+    Promises get resilved
+
+-> in this case both the promises resolved at the same time
+
+Example:2
+const p=new Promise(function(reslve,reject){
+    setTimeOut(function (){
+    resolve("Promises get resilved")
+    },5000)
+    
+
+})
+
+const p2=new Promise(function(reslve,reject){
+    setTimeOut(function (){
+    resolve("Promises get resilved")
+    },10000)
+    
+
+})
+
+
+async funtion hello(){
+    const res=await p
+    console.log("Namaste Javascript")
+    console.log(res)
+
+    const res2=await p2
+    console.log("Namaste Javascript 2")
+    console.log(res2)
+
+}
+
+result:
+    Namaste Javascript
+    Promises get resilved
+
+    then after 10 seconds
+    Namaste Javascript 2
+    Promises get resilved
+
+-> in this case first promises resolved first and second later because of time change first has low and second has high 
+
+Example:2
+const p=new Promise(function(reslve,reject){
+    setTimeOut(function (){
+    resolve("Promises get resilved")
+    },10000)
+    
+
+})
+
+const p2=new Promise(function(reslve,reject){
+    setTimeOut(function (){
+    resolve("Promises get resilved")
+    },5000)
+    
+
+})
+
+
+async funtion hello(){
+    const res=await p
+    console.log("Namaste Javascript")
+    console.log(res)
+
+    const res2=await p2
+    console.log("Namaste Javascript 2")
+    console.log(res2)
+
+}
+
+result:
+    Namaste Javascript
+    Promises get resilved
+    Namaste Javascript 2
+    Promises get resilved
+
+
+-> in this case both resolved at the same time the first promise has 10 seconds where as second only has 5 but both will resolve at the same time 
