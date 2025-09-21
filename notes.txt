@@ -160,3 +160,12 @@ Async vs promise
 -----------------
 async and await is just syntactical sugar that is it because it uses promise.then and catch only 
 -> async avoid promise chaining ,we do not want to write .then.then like that 
+
+
+The suspended part (continuation) is not in the call stack anymore. Instead, it’s kept in the Promise’s internal reaction queue.
+
+When p eventually resolves, the JS engine schedules the continuation (the rest of the function after the await) as a microtask in the microtask queue.
+
+The event loop will then take it out of the microtask queue and push it back to the call stack for execution.
+
+So the suspended code is essentially stored in the promise’s internal fulfillment handlers (like .then callbacks) until it is resumed.
