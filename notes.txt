@@ -1,168 +1,139 @@
-Promises.all 
-------------
-    -> when we required to load multiple api call at tha same time 
-    -> use cases we know in the iqagent promise.all is used to determine the loading state of loader ,once all the api call is done then we push the loader out 
-        of it 
-    
-what if the prmose.all inside one api call is rejected ??
-    -> then all the promise will throw an error even if one is failed
+this in global space
+--------------------
+   -> this in browser will always point to window object ,we know javascript can run on any where if we have javascript run time ,like bulb,fridge ,mobile etc so i therethe 
+      keyword this can be different
 
-promise.allSetteled
--------------------
+   -> in strict mode the behaviour is different
 
-   ->both are same and even if one fail ,it gives result and says that one has failed ,like promise.all it wont throw any error 
-   -> example scenario:suppose if 5 card api call need to take place and only 4 cards succeeded then show four cards 
+   -> strict mode differnce (To use strict mode just on javascript top put this keyword "use strict")
+         console.log(this);
 
+         function x(){
+            console.log(this);
+         }
 
-promise.race
---------------
-   ->this is as the name suggest which promise gets resolved first that promise will be given as result
-   -> so what if the first race promise was rejected ,so error will be thrown
+         result:
+            window object 
+            undefined
+   -> non strict mode differnce
 
-promise.any
--------------
-   -> here this is same functionality as promise.race ,the key difference is ,whatever promise get first resolved is winner,like if first reolved code is error then it 
-      will wait for the next first promise which is resolved succesfully ,it wont throw error on if the first reolved promise is error 
+      console.log(this);
 
-   -> suppose if every promise is reolved error then it return aggregate of error which looks like [err1,err2,err3]
+         function x(){
+            console.log(this);
+         }
 
+         result:
+            window object 
+            window object
 
+this inside non strict mode - (this substitution)
+-----------------------------------------
+   -> if when we log this keyword on anywhere and if it is undefined or null then it will be replaced with global object only in non strict mode
 
-Uncaught error is something we didnt catch the error ,we should not have uncaught error 
+this keyword value depends on how the fucntion is called 
+---------------------------------------------------------
+   under strict mode
+   -----------------
+    ->console.log(this);
 
+         function x(){
+            console.log(this);
+         }
+      x()
+         result:
+            window object 
+            undefined
+--------------------------------
+   ->console.log(this);
 
-promise.all
-------------
+            function x(){
+               console.log(this);
+            }
+         window.x()
+            result:
+               window object 
+               window object
 
-const p1=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P1  success")
-    },3000)
-})
-
-const p2=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P2  success")
-    },1000)
-})
-const p3=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P3  success")
-    },2000)
-})
-
-
-Promise.all([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err))
-
-result:
------------
-   [
-    "P1  success",
-    "P2  success",
-    "P3  success"
-]
-
-promise.allSettled
-------------------
-
-const p1=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P1  success")
-    },3000)
-})
-
-const p2=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        reject("P2  success")
-    },1000)
-})
-const p3=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P3  success")
-    },2000)
-})
+      under non strict mode 
+      ----------------------
+      -> result:
+            window object
+            window object
+            window object
 
 
-Promise.allSettled([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err))
+method
+----------
+   -> function that is part of the object is known as method
 
 
-result:
----------
-[
-    {
-        "status": "fulfilled",
-        "value": "P1  success"
-    },
-    {
-        "status": "rejected",
-        "reason": "P2  success"
-    },
-    {
-        "status": "fulfilled",
-        "value": "P3  success"
-    }
-]
+this keyword inside object
+------------------------------
+   const obj={
+      a:10
+      x:function (){
+         console.log(this)
+      }
+   }
+   obj.x()
+
+   result:
+   --------
+         {
+      "a": 10
+         }
+
+whenever we talk about this keyword three impotant topics
+----------------------------------------------------------
+   -> call 
+   -> apply
+   -> bind
 
 
-promise.race
--------------
-const p1=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P1  success")
-    },3000)
-})
 
-const p2=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P2  success")
-    },1000)
-})
-const p3=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        resolve("P3  success")
-    },2000)
-})
+ call 
+--------
 
+   const obj={
+         a:10,
+         x:function (){
+            console.log(this.a)
+         }
+      }
 
-Promise.race([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err))
+   const obj2={
+      a:"Hello ratna"
 
-result:
---------- 
-   P2  success
+   }
 
-
-promise.any
------------
-const p1=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        reject("P1  success")
-    },3000)
-})
-
-const p2=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        reject("P2  success")
-    },1000)
-})
-const p3=new Promise((resolve,reject)=>{
-    setTimeout( ()=>{
-        reject("P3  success")
-    },2000)
-})
-
-
-Promise.any([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err.errors))
+   obj.x.call(obj2)
 
 result:
 --------
-['P1  success', 'P2  success', 'P3  success']
+   Hello ratna
+
+this  keyword inside arrow function
+------------------------------------
+   -> inside arrow function it will behave differently ,it wont reference the curr obj but it will represent  the value of it enclosing lexical context
+
+    const obj={
+         a:10,
+         x: ()=>{
+            console.log(this)
+         }
+      }
+result:
+--------
+   window object because the object is in global scope
 
 
-promises Lingo (words):
-------------------------
-   settled -> got the result 
 
-   fullfilled   rejected 
-   succesful    failure 
-   resolve      reject 
+dom element
+--------------
 
+<button onclick="alert(this)">Click me </button>
+
+
+result :
+   in alert this will give onject html button element | it means the this keyword in don refernce to the html element where we invoke it 
