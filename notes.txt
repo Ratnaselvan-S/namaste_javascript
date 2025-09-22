@@ -126,8 +126,29 @@ this  keyword inside arrow function
 result:
 --------
    window object because the object is in global scope
+-----------------------------------------------------------------------------------
 
+if i do this 
+    const obj={
+         a:10,
+         x:function  (){
+            const z=()=>{
+            console.log(this)
 
+            }
+            z()
+         }
+      }
+
+   obj.x()
+
+   result:
+      {
+         "a": 10
+         x:f
+      }
+
+because lexical scop of the function is the obj
 
 dom element
 --------------
@@ -136,4 +157,4 @@ dom element
 
 
 result :
-   in alert this will give onject html button element | it means the this keyword in don refernce to the html element where we invoke it 
+   in alert this will give object html button element | it means the this keyword in dom refernce to the html element where we invoke it 
