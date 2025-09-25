@@ -158,3 +158,16 @@ dom element
 
 result :
    in alert this will give object html button element | it means the this keyword in dom refernce to the html element where we invoke it 
+
+
+
+
+
+
+null collision  ,in logical operator even first three result to default this is the difference
+--------------
+console.log(0 ?? "default");     // 0   ✅ keeps zero
+console.log("" ?? "default");    // ""  ✅ keeps empty string
+console.log(false ?? "default"); // false ✅ keeps boolean false
+console.log(null ?? "default");  // "default"
+console.log(undefined ?? "default"); // "default"
