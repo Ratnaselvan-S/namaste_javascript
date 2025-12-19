@@ -15,3 +15,8 @@ function b(){
 
 
 //Call stack 
+
+result:
+    10
+    100
+    1
