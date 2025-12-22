@@ -45,8 +45,8 @@ document.getElementByid("button").addEventListener("click",function cb(){
     when the event occures then from dom event subsytem it moves to callback queue and then by event loop if call stack is empty it execute the cb function
 
 
-call back queue also known as task queue
-------------------------------------------
+call back queue also known as task queue (also known as "Macrotast queue")
+----------------------------------------------------------------------------
 
 why we need call back queue ?
     ->if no ccall back queue and we take it directly form subsystem then below scenario
