@@ -8,9 +8,23 @@ lexical  means it is hierarchy or sequence
             function c(){
                 console.log(b)
             }
+            c()
         }
         var b=10 
+        a()
+
     -> now each create a execution context right and inside c it will locally look for the variable "b" not not found so it lexically goes to parent memory and search for b 
     but in parent also not there that is a execution context so it will go lexically to global one and ,if not there then it will return b is not defined 
     
         -> the process of lexically going to parent execution context memory is called scope chain 
+
+
+   -> Lexical environment exists so that JavaScript knows where to look for a variable’s value.
+      JavaScript creates lexical environments for global scope, function scope, and block scope.
+      Each lexical environment has its own environment record and a reference to its outer lexical environment,
+       which defines the path JavaScript follows when resolving variables.
+
+   -> example : 
+      global has outer reference as null
+      function a in the above example has outer reference as global 
+      function c has outer reference as a's local environment
